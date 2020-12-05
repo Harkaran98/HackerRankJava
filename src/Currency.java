@@ -1,7 +1,7 @@
 import java.util.*;
 import java.text.*;
 
-public class JavaCurrency {
+public class Currency {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
