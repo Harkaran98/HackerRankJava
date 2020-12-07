@@ -1,8 +1,9 @@
 package JavaDataStrcts;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Arrays {
+public class ArrayDataS {
 
     static Scanner scan = new Scanner(System.in);
 
@@ -10,6 +11,11 @@ public class Arrays {
        // arraysBasics();
         //hourglass();
         //subArrSum();
+        //alist();
+        int[] a={0,0,0,0,0};
+
+        System.out.println(canWin(3,a));
+
 
 
     }
@@ -82,6 +88,73 @@ public class Arrays {
             System.out.println(count);
 
             }
+
+
+
+        public static void alist(){
+
+        int n=scan.nextInt();
+        ArrayList<Integer>[] al=new ArrayList[n]; //Array of ArrayList
+
+        for (int i=0;i<n;i++){
+
+            int k=scan.nextInt();
+            al[i]=new ArrayList<>(); //Don't forget to initialize each arraylist
+
+            for (int j=0;j<k;j++)
+                al[i].add(scan.nextInt());
+
+        }
+
+        int q=scan.nextInt();
+
+        for(int i=0;i<q;i++){
+            int r=scan.nextInt();
+            int c=scan.nextInt();
+
+            try{System.out.println(al[r-1].get(c-1));}catch (Exception e){
+
+             System.out.println("ERROR!");}
+
+        }
+
+            }
+
+
+    public static boolean canWin(int leap, int[] game) {
+
+        int flag=0;
+        boolean win=false;
+        int i=0;
+        int n=game.length-1;
+        game[0]=1;
+        do{
+            if(((i+1>=n) &&(game[i+leap]==0)) || i+leap>n
+                    || ((i+leap==n)&&(game[i+leap]==0))){     win=true;
+                flag=1;
+            }
+            else if(game[i+leap]==0){
+                game[i+leap]=1;
+                i+=leap;
+            }
+            else if(game[i+1]==0){
+                game[i+1]=1;
+                i++;
+            }
+
+            else if(i>0 && game[i-1]==0){
+                game[i-1]=1;
+                i--;
+            }
+            else flag=1;
+
+        }while(flag!=1);
+
+
+        return win;
+
+    }
+
 
         }
 
