@@ -63,37 +63,39 @@ public class OtherDataS {
 
     }
 
-    //Stack
+    //Stack Balanced Parenthesis
     public static void StackFun() {
 
-        Scanner scan = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
         Stack<Character> s = new Stack<>();
 
-        while (scan.hasNext()) {
+        while (sc.hasNext()) {
 
-            String input = scan.next();
-            int l = input.length();
-            Character push;
-            // System.out.println(input);
-            if (l % 2 != 0 | input.charAt(0)==')' |
-                    input.charAt(0)== ']' | input.charAt(0)== '}')
-                System.out.println("false");
-            else {
 
-                for (int i=0;i<l;i++){
-                    push=input.charAt(i);
-                        switch (s.peek()){
-
+            while (sc.hasNext()) {
+                String input=sc.next();
+                Stack<Character> stacky = new Stack<>();
+                for (int i = 0; i < input.length(); i++) {
+                    if (!stacky.isEmpty()) {
+                        switch(input.charAt(i)) {
+                            case '}' : if (stacky.peek() == '{') {
+                                stacky.pop();
+                            } break;
+                            case ']' : if (stacky.peek() == '[') {
+                                stacky.pop();
+                            } break;
+                            case ')' : if (stacky.peek() == '(') {
+                                stacky.pop();
+                            } break;
+                            default: stacky.push(input.charAt(i));
                         }
-
-
-
-
-
+                    } else {
+                        stacky.push(input.charAt(i));
                     }
                 }
-
+                System.out.println(stacky.isEmpty());
             }
+        }
         }
 
         //HashSet
@@ -209,4 +211,74 @@ public class OtherDataS {
         System.out.println(max);
     }
 
+
 }
+
+class Student{
+
+    int id;
+    String name;
+    double cgpa;
+
+    Student(int id, String name, double cgpa){
+
+        this.id=id;
+        this.name=name;
+        this.cgpa=cgpa;
+
+    }
+
+    public int getID() {
+        return id;
+    }
+
+    public double getCGPA() {
+        return cgpa;
+    }
+
+    public String getName() {
+        return name;
+    }
+}
+
+class Priorities {
+
+
+    public List < Student > getStudents(List < String > events) {
+        PriorityQueue < Student > student_queue = new PriorityQueue<>(Comparator.comparing(Student::getCGPA).reversed()
+                .thenComparing(Student::getName).thenComparing(Student::getID));
+
+        List < Student > students = new ArrayList <> ();
+        for (String e: events) {
+            Scanner in =new Scanner(e);
+            String event = in.next();
+            if (event.equals("ENTER")) {
+                String name = in.next();
+                float cgpa = in.nextFloat();
+                int token = in.nextInt();
+
+                Student student = new Student(token, name, cgpa);
+                student_queue.add(student);
+            } else if (event.equals("SERVED")) {
+                Student first = student_queue.poll();
+            } in .close();
+        }
+        Student first = student_queue.poll();
+        if (first == null) {
+            return students;
+        } else {
+            while (first != null) {
+
+                students.add(first);
+                first = student_queue.poll();
+
+            }
+            return students;
+        }
+
+    }
+
+
+
+        }
+

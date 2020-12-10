@@ -1,7 +1,11 @@
 package JavaDataStrcts;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
+
+
+
 
 public class ArrayDataS {
 
@@ -20,12 +24,13 @@ public class ArrayDataS {
 
     }
 
+
     public static void arraysBasics() {
 
         //Input and printing of 1D array
 
         //Input
-
+        List<Integer> l=new ArrayList<>();
         int n = scan.nextInt();
         int[] a = new int[n];
         for (int i = 0; i < n; i++) {
@@ -95,6 +100,7 @@ public class ArrayDataS {
 
         int n=scan.nextInt();
         ArrayList<Integer>[] al=new ArrayList[n]; //Array of ArrayList
+            
 
         for (int i=0;i<n;i++){
 
